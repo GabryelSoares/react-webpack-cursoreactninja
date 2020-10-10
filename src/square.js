@@ -1,4 +1,4 @@
-'use stricts'
+'use strict'
 
 import React from 'react'
 
@@ -11,7 +11,7 @@ const Square = ({ color }) => (
 )
 
 Square.defaultProps = {
-  backgroundColor: 'red'
+  color: 'red'
 }
 
 export default Square
