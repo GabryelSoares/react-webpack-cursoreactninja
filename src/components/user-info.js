@@ -1,18 +1,35 @@
-import React from 'react';
+'use strict'
 
-const UserInfo = () => (
+import React, { PropTypes } from 'react'
+
+const UserInfo = ({ userinfo }) => (
   <div className='user-info'>
-    <img src="https://avatars3.githubusercontent.com/u/55500531?v=4" alt="" />
+    <img src={userinfo.photo} alt="" />
     <h1 className='username'>
-      <a href="https://github.com/GabryelSoares">Gabryel Soares</a>
+      <a href={`https://github.com/${ userinfo.login }`}>
+        {userinfo.username}
+      </a>
     </h1>
 
     <ul className='repos-info'>
-      <li>Repositórios: 5</li>
-      <li>Seguidores: 0</li>
-      <li>Seguindo: 1</li>
+      <li>Repositórios: {userinfo.repos}</li>
+      <li>Seguidores: {userinfo.followers}</li>
+      <li>Seguindo: {userinfo.following}</li>
     </ul>
   </div>
 );
+
+UserInfo.defaultProps = {}
+
+UserInfo.propTypes = {
+  userinfo: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+    repos: PropTypes.array.isRequired,
+    followers: PropTypes.number.isRequired,
+    following: PropTypes.number.isRequired
+  })
+}
 
 export default UserInfo;
