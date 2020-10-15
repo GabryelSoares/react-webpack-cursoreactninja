@@ -15,23 +15,22 @@ const AppContent = ({ userinfo, repos, starred }) => (
 
     {!!repos.length && <Repos
       className='repos'
-      title='Repositórios: '
+      title='Repositórios:'
       repos={repos}
     />}
 
     {!!starred.length && <Repos
       className='starred'
-      title='Favoritos: '
+      title='Favoritos:'
       repos={starred}
     />}
-
   </div>
 )
 
 AppContent.defaultProps = {}
 
 AppContent.propTypes = {
-  userinfo: PropTypes.object.isRequired,
+  userinfo: PropTypes.object,
   repos: PropTypes.array.isRequired,
   starred: PropTypes.array.isRequired
 }
