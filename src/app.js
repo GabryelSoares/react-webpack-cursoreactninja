@@ -24,23 +24,30 @@ class App extends Component {
     const value = e.target.value
     const keyCode = e.which || e.keyCode
     const ENTER = 13
+    const target = e.target
 
     if (keyCode === ENTER) {
-      ajax().get(this.getGitHubApiUrl(value)).then((result) => {
-        console.log(result)
-        this.setState({
-          userinfo: {
-            username: result.name,
-            photo: result.avatar_url,
-            login: result.login,
-            repos: result.public_repos,
-            followers: result.followers,
-            following: result.following
-          },
-          repos: [],
-          starred: []
+      target.disabled = true
+      ajax()
+        .get(this.getGitHubApiUrl(value))
+        .then((result) => {
+          console.log(result)
+          this.setState({
+            userinfo: {
+              username: result.name,
+              photo: result.avatar_url,
+              login: result.login,
+              repos: result.public_repos,
+              followers: result.followers,
+              following: result.following
+            },
+            repos: [],
+            starred: []
+          })
         })
-      })
+        .always(() => {
+          target.disabled = false
+        })
     }
   }
 
