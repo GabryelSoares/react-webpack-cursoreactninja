@@ -42,6 +42,8 @@ class App extends Component {
       repos={this.state.repos}
       starred={this.state.starred}
       handleSearch={(e) => this.handleSearch(e)}
+      getRepos={() => console.log('app getRepos')}
+      getStarred={() => console.log('app getStarred')}
     />
   }
 }
